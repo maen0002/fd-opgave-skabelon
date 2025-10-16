@@ -1,1 +1,27 @@
 /* Globale styles her */
+
+:root {
+  --bg-color-black: #181818;
+  --bg-color-white: #fff;
+  --bg-section-gray: #f5f5f5;
+  --primary-color-01: #ffcc4a;
+
+  --size--1: clamp(0.65rem, 0.63rem + 0.1002vw, 0.7502rem);
+  --size-0: clamp(0.8125rem, 0.775rem + 0.1875vw, 1rem);
+  --size-1: clamp(1.0156rem, 0.9522rem + 0.3174vw, 1.333rem);
+  --size-2: clamp(1.2695rem, 1.1681rem + 0.5074vw, 1.7769rem);
+  --size-3: clamp(1.5869rem, 1.4306rem + 0.7817vw, 2.3686rem);
+  --size-4: clamp(1.9836rem, 1.7489rem + 1.1737vw, 3.1573rem);
+
+  --space-2xs: clamp(0.5rem, 0.4783rem + 0.1087vw, 0.5625rem);
+  --space-xs: clamp(0.75rem, 0.7065rem + 0.2174vw, 0.875rem);
+  --space-s: clamp(1rem, 0.9565rem + 0.2174vw, 1.125rem);
+  --space-m: clamp(1.5rem, 1.4348rem + 0.3261vw, 1.6875rem);
+  --space-l: clamp(2rem, 1.913rem + 0.4348vw, 2.25rem);
+  --space-xl: clamp(3rem, 2.8696rem + 0.6522vw, 3.375rem);
+  --space-2xl: clamp(4rem, 3.8261rem + 0.8696vw, 4.5rem);
+}
+
+p {
+  font-size: var(--size-0);
+}

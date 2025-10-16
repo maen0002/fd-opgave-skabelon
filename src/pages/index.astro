@@ -1,8 +1,12 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Hero from "@components/Hero.astro";
+import ScrollingContainer from "@components/ScrollingContainer.astro";
+
+import { values } from "../data/financialProjections.json";
 ---
 
 <Layout>
   <Hero />
+  <ScrollingContainer cardContent={values} />
 </Layout>

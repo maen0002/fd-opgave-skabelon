@@ -1,0 +1,169 @@
+---
+const { cardContent } = Astro.props;
+
+import ArrowRight from "@icons/arrow--right.svg";
+import ArrowLeft from "@icons/arrow-left.svg";
+import DynamicIcon from "./helpers/DynamicIcon.astro";
+---
+
+<section>
+  <div>
+    <div>
+      <h3>Financial Projections</h3>
+      <p>Financial projections are essential for planning and monitoring a company’s performance. <br /> They provide insights into potential revenue, expenses, and profitability over specific periods.</p>
+    </div>
+    <div>
+      <button data-scroll="left" aria-label="Scroll left"><ArrowLeft /></button>
+      <button data-scroll="right" aria-label="Scroll right"><ArrowRight /></button>
+    </div>
+  </div>
+  <ul class="full-width">
+    {
+      cardContent.map((card) => (
+        <li>
+          <svg width="50" height="50">
+            <DynamicIcon name={card.icon} />
+          </svg>
+          <h3>{card.title}</h3>
+          <p>{card.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  :root {
+    --content-width: 1200px;
+    --card-padding: 2.75rem 2.1875rem;
+    --card-gap: 1rem;
+    --card-border-radius: 8px;
+    --card-background: #ebebeb;
+    --card-text-color: #595566;
+    --card-title-color: #181818;
+    --scroll-padding: max(1rem, 50% - var(--content-width) / 2);
+  }
+
+  button {
+    background-color: var(--primary-color-01);
+    border-radius: 100%;
+    width: 69.535px;
+    height: 69.535px;
+
+    > svg {
+      place-self: center;
+      color: #141414;
+    }
+  }
+
+  button:disabled {
+    background-color: var(--bg-color-black);
+    pointer-events: none;
+    transition: 0.2s;
+    > svg {
+      color: #fff;
+    }
+  }
+
+  h3 {
+    font-size: var(--size-4);
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  section {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, var(--content-width)) 1fr;
+    background: var(--bg-section-gray);
+    padding: 10svw 0px;
+
+    > * {
+      grid-column: 2;
+    }
+
+    > div {
+      display: flex;
+
+      > :has(h3) {
+        flex: 1;
+      }
+
+      > :last-child {
+        display: flex;
+        gap: 26px;
+        place-self: end;
+      }
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+  }
+
+  ul {
+    margin-top: 3.5svw;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: var(--card-gap);
+
+    padding-inline: var(--scroll-padding);
+    scroll-padding-inline: var(--scroll-padding);
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+
+    li {
+      flex: 1 0 400px;
+      background: var(--card-background);
+      color: var(--card-text-color);
+      padding: var(--card-padding);
+      scroll-snap-align: start;
+      border-radius: 20px;
+      height: min-content;
+
+      h3 {
+        color: var(--card-title-color);
+        font-family: Cabin;
+        font-size: var(--size-2);
+        font-style: normal;
+        font-weight: 600;
+      }
+      svg {
+        color: var(--bg-color-black);
+      }
+    }
+  }
+</style>
+
+<script type="module">
+  // definere const
+  const container = document.querySelector("ul.full-width");
+  const btnLeft = document.querySelector('button[data-scroll="left"]');
+  const btnRight = document.querySelector('button[data-scroll="right"]');
+
+  if (container && btnLeft && btnRight) {
+    // Hvor meget der bliver scrollet per click
+    const getScrollAmount = () => Math.round(container.clientWidth * 0.3);
+
+    const updateButtons = () => {
+      btnLeft.disabled = container.scrollLeft <= 0;
+      btnRight.disabled = container.scrollLeft + container.clientWidth >= container.scrollWidth - 1;
+    };
+
+    btnLeft.addEventListener("click", () => {
+      container.scrollBy({ left: -getScrollAmount(), behavior: "smooth" });
+    });
+
+    btnRight.addEventListener("click", () => {
+      container.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
+    });
+
+    container.addEventListener("scroll", updateButtons);
+    // update on resize because clientWidth changes
+    window.addEventListener("resize", updateButtons);
+
+    // initial state
+    updateButtons();
+  }
+</script>

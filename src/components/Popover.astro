@@ -1,0 +1,77 @@
+---
+
+---
+
+<div id="popup" popover="auto">
+  <h2>Dashboard Login</h2>
+  <p>Email Adress</p>
+  <input type="text" />
+  <p>Password</p>
+  <input type="text" />
+  <button>Go to dashboard</button>
+
+  <style></style>
+</div>
+
+<style>
+  [popover] {
+    opacity: 0;
+    translate: 0 -100%;
+    transition: 0.6s;
+    transition-property: opacity, display, overlay, translate;
+    background-color: var(--bg-color-black);
+    color: #fff;
+    padding: 80px 100px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      font-size: var(--size-3);
+      font-family: Cabin;
+      font-style: normal;
+      font-weight: 700;
+      margin-bottom: 46px;
+    }
+
+    input {
+      border-radius: 4px;
+      border: 1px solid #e3e3e3;
+      background: #fff;
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 15px 56px;
+      border-radius: 42px;
+      place-self: center end;
+      color: var(--bg-color-black);
+      background-color: var(--primary-color-01);
+    }
+
+    &::backdrop {
+      backdrop-filter: blur(0px);
+      transition: 0.6s;
+    }
+  }
+
+  :popover-open {
+    opacity: 1;
+    translate: 0 0;
+
+    &::backdrop {
+      backdrop-filter: blur(10px) brightness(60%);
+
+      @starting-style {
+        backdrop-filter: blur(0px) brightness(100%);
+      }
+    }
+
+    @starting-style {
+      opacity: 0;
+      translate: 0 100%;
+    }
+  }
+</style>

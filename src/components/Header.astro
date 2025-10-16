@@ -1,0 +1,61 @@
+---
+import Popover from "./Popover.astro";
+---
+
+<div class="header">
+  <div>
+    <h2>AskExperts</h2>
+    <ul>
+      <li>Home</li>
+      <li>Case Study</li>
+      <li>Team</li>
+      <li>About</li>
+    </ul>
+    <button popovertarget="popup">Login</button>
+  </div>
+</div>
+<Popover />
+
+<style>
+  .header {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1200px) 1fr;
+    padding: 38px;
+    background: #1b1b1be8;
+
+    > div {
+      grid-column: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+
+      h2 {
+        color: #fff;
+        font-family: Cabin;
+        font-size: var(--size-2);
+        font-style: normal;
+        font-weight: 600;
+      }
+    }
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-content: center;
+    padding-inline-start: 0px;
+    color: #fff;
+    font-size: 18px;
+    margin: 0px;
+  }
+
+  button {
+    color: var(--bg-color-black);
+    background-color: var(--primary-color-01);
+    border-radius: 20px;
+    padding: 4px 16px;
+    place-self: center end;
+  }
+</style>
