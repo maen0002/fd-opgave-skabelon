@@ -1,12 +1,16 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Hero from "@components/Hero.astro";
+import IndexSection01 from "@components/IndexSection01.astro";
 import ScrollingContainer from "@components/ScrollingContainer.astro";
-
-import { values } from "../data/financialProjections.json";
+import AnimatedStats from "@components/AnimatedStats.astro";
+import CoreValues from "@components/CoreValues.astro";
 ---
 
 <Layout>
   <Hero />
-  <ScrollingContainer cardContent={values} />
+  <IndexSection01 />
+  <ScrollingContainer />
+  <AnimatedStats />
+  <CoreValues />
 </Layout>

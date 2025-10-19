@@ -1,0 +1,178 @@
+---
+
+---
+
+<section>
+  <div>
+    <div>
+      <h4>Experience</h4>
+      <h2>More than 25 years of experience</h2>
+      <p>3000+ our clients are insured around the World</p>
+    </div>
+    <div class="stats">
+      <div>
+        <div class="stat" style="--percent: 85"></div>
+        <h3>Consistency</h3>
+      </div>
+      <div>
+        <div class="stat" style="--percent: 95"></div>
+        <h3>Improvement</h3>
+      </div>
+      <div>
+        <div class="stat" style="--percent: 90"></div>
+        <h3>Branching</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1200px) 1fr;
+    background: var(--bg-color-yellow);
+    padding: 10svw 5svw;
+    container: section / inline-size;
+
+    > * {
+      grid-column: 2;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      gap: 90px;
+
+      > div:has(h4) {
+        h4 {
+          margin-bottom: 22px;
+          font-family: Lato;
+          font-size: var(--size-0);
+          font-style: normal;
+          font-weight: 400;
+          letter-spacing: 2.32px;
+          text-transform: uppercase;
+        }
+        h2 {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+
+  .stats {
+    display: flex;
+    gap: 26px;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      place-items: center;
+
+      h3 {
+        margin-top: 25px;
+        color: var(--bg-color-black);
+        font-family: Cabin;
+        font-size: var(--size-2);
+        font-style: normal;
+        font-weight: 600;
+        line-height: 116%; /* 29px */
+      }
+    }
+  }
+
+  @property --animate-percent {
+    syntax: "<percentage>";
+    initial-value: 0%;
+    inherits: true;
+  }
+  @property --counter-value {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
+  }
+
+  .stat {
+    container: stat / inline-size;
+    --actualPercent: calc(var(--percent) * 1%);
+    --border-width: 5px;
+    aspect-ratio: 1;
+    width: 180px;
+    height: 180px;
+    border-radius: calc(Infinity * 1px);
+    border: var(--border-width) solid transparent;
+    animation:
+      animate2 5s ease-out 1,
+      animate3 5s ease-out 1;
+    animation-fill-mode: forwards;
+
+    background:
+      conic-gradient(var(--bg-color-yellow) 0 0) padding-box,
+      conic-gradient(#fff 0% var(--animate-percent), #daae3c 0) border-box;
+
+    display: grid;
+
+    counter-reset: c var(--counter-value);
+
+    &::before,
+    &::after {
+      grid-area: 1 / 1;
+    }
+
+    &::after {
+      content: counter(c) "%";
+      place-self: center;
+      font-size: 30cqw;
+    }
+
+    &::before {
+      content: "";
+      aspect-ratio: 1;
+      border-radius: 99px;
+      offset-path: border-box;
+      offset-distance: 0;
+      offset-anchor: 50% calc(50% - var(--border-width) / 2);
+      width: 20px;
+      border: solid #fff 3.5px;
+      background: var(--bg-color-black);
+      animation: animate 5s ease-out 1;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  @container section (width < 800px) {
+    section > div {
+      flex-direction: column;
+      gap: 30px;
+
+      > .stats {
+        flex-direction: row;
+        gap: 20px;
+        flex-wrap: wrap;
+
+        > * {
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  @keyframes animate {
+    to {
+      offset-distance: var(--actualPercent);
+    }
+  }
+  @keyframes animate2 {
+    to {
+      --animate-percent: var(--actualPercent);
+    }
+  }
+  @keyframes animate3 {
+    from {
+      --counter-value: 0;
+    }
+    to {
+      --counter-value: var(--percent);
+    }
+  }
+</style>

@@ -3,6 +3,7 @@
 :root {
   --bg-color-black: #181818;
   --bg-color-white: #fff;
+  --bg-color-yellow: #fbc336;
   --bg-section-gray: #f5f5f5;
   --primary-color-01: #ffcc4a;
 
@@ -23,5 +24,13 @@
 }
 
 p {
+  font-family: Lato;
   font-size: var(--size-0);
+  line-height: 147.5%;
+}
+h2 {
+  font-size: var(--size-4);
+  font-family: Cabin;
+  font-style: normal;
+  font-weight: 700;
 }

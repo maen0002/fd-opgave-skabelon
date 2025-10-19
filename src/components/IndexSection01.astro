@@ -1,0 +1,78 @@
+---
+import DynamicImage from "./helpers/DynamicImage.astro";
+import DynamicIcon from "./helpers/DynamicIcon.astro";
+---
+
+<div class="grid">
+  <div>
+    <DynamicImage imagePath="/src/data/images/Index01Photo.jpg" altText="person i forgrund og to kollegaer der snakker i baggrund" class="img" />
+    <div>
+      <h4>WE'LL WORK WITH YOU</h4>
+      <h2>What To Expect</h2>
+      <p>Our collaboration is built on transparency, efficiency, and measurable results. Together, we create strategies tailored to your unique needs and goals.</p>
+      <div>
+        <div><DynamicIcon name="checkmark" /> <p>Collaborate to build actionable strategies that drive sustainable growth and deliver tangible outcomes.</p></div>
+        <div><DynamicIcon name="checkmark" /> <p>Identify opportunities to optimize processes and implement impactful solutions with measurable results.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1200px) 1fr;
+    padding: 5svw;
+    container: section / inline-size;
+
+    > div {
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 82px;
+
+      .img {
+        border-radius: 28px;
+      }
+
+      > div > p {
+        padding-bottom: 21px;
+      }
+
+      > div > div > div {
+        display: flex;
+        gap: 10px;
+        padding-bottom: 18px;
+
+        p {
+          text-box-trim: trim-start;
+        }
+
+        svg {
+          color: #4eaf4e;
+          place-self: start;
+        }
+      }
+    }
+  }
+  h2 {
+    font-size: var(--size-4);
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: 700;
+  }
+  p {
+    font-style: normal;
+  }
+
+  @container section (width < 720px) {
+    .grid > div {
+      grid-template-columns: 1fr;
+      gap: 4svw;
+
+      .img {
+        order: 1;
+      }
+    }
+  }
+</style>

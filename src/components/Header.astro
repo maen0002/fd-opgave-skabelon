@@ -6,8 +6,8 @@ import Popover from "./Popover.astro";
   <div>
     <h2>AskExperts</h2>
     <ul>
-      <li>Home</li>
-      <li>Case Study</li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/case/">Case Study</a></li>
       <li>Team</li>
       <li>About</li>
     </ul>
@@ -57,5 +57,10 @@ import Popover from "./Popover.astro";
     border-radius: 20px;
     padding: 4px 16px;
     place-self: center end;
+  }
+
+  a {
+    text-decoration: none;
+    color: #fff;
   }
 </style>

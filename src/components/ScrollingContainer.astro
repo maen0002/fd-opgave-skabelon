@@ -1,6 +1,10 @@
 ---
 const { cardContent } = Astro.props;
 
+const cards = Array.isArray(cardContent) ? cardContent : cardContent && Array.isArray(cardContent.values) ? cardContent.values : defaultValues;
+
+import { values as defaultValues } from "../data/financialProjections.json";
+
 import ArrowRight from "@icons/arrow--right.svg";
 import ArrowLeft from "@icons/arrow-left.svg";
 import DynamicIcon from "./helpers/DynamicIcon.astro";
@@ -9,7 +13,7 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
 <section>
   <div>
     <div>
-      <h3>Financial Projections</h3>
+      <h2>Financial Projections</h2>
       <p>Financial projections are essential for planning and monitoring a company’s performance. <br /> They provide insights into potential revenue, expenses, and profitability over specific periods.</p>
     </div>
     <div>
@@ -19,7 +23,7 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
   </div>
   <ul class="full-width">
     {
-      cardContent.map((card) => (
+      cards.map((card) => (
         <li>
           <svg width="50" height="50">
             <DynamicIcon name={card.icon} />
@@ -65,7 +69,7 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
     }
   }
 
-  h3 {
+  h2 {
     font-size: var(--size-4);
     font-family: Cabin;
     font-style: normal;
@@ -85,7 +89,7 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
     > div {
       display: flex;
 
-      > :has(h3) {
+      > :has(h2) {
         flex: 1;
       }
 

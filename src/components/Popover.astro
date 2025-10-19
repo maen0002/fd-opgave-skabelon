@@ -25,6 +25,7 @@
     border-radius: 30px;
     display: flex;
     flex-direction: column;
+    pointer-events: none;
 
     h2 {
       font-size: var(--size-3);
@@ -60,6 +61,7 @@
   :popover-open {
     opacity: 1;
     translate: 0 0;
+    pointer-events: auto;
 
     &::backdrop {
       backdrop-filter: blur(10px) brightness(60%);
