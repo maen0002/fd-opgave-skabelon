@@ -34,3 +34,9 @@ h2 {
   font-style: normal;
   font-weight: 700;
 }
+h3 {
+  font-family: Cabin;
+  font-size: var(--size-2);
+  font-style: normal;
+  font-weight: 600;
+}

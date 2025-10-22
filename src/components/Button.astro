@@ -1,12 +1,12 @@
 ---
-const { link, btnColor, txtColor, txt, brdRadius = "42px" } = Astro.props;
+const { link = "#", btnColor = "var(--primary-color-01)", txtColor = "var(--bg-color-black)", txt, brdRadius = "42px", padding = "16px 33px" } = Astro.props;
 ---
 
-<a href={link} style=`border: 2px solid ${btnColor}; background: ${btnColor}; color: ${txtColor}; border-radius: ${brdRadius}`>{txt}</a>
+<a href={link} style=`border: 2px solid ${btnColor}; background: ${btnColor}; color: ${txtColor}; border-radius: ${brdRadius}; padding: ${padding}`>{txt}</a>
 
 <style>
   a {
-    padding: 16px 33px;
     text-decoration: none;
+    height: fit-content;
   }
 </style>

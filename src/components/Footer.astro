@@ -1,0 +1,38 @@
+---
+
+---
+
+<div>
+  <h3>AskExperts</h3>
+  <div></div>
+  <p>©2025 Consultalk. All rights reserved | Terms of Service | Privacy Policy</p>
+</div>
+
+<style>
+  div:has(h3) {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1200px) 1fr;
+    gap: 36px;
+    background-color: var(--bg-color-black);
+    color: #fff;
+    padding: 46px 0px;
+
+    > * {
+      grid-column: 2;
+    }
+
+    h3,
+    p {
+      text-align: center;
+      font-family: Cabin;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    div {
+      height: 1px;
+      width: 100%;
+      background-color: #707070;
+    }
+  }
+</style>

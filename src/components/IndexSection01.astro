@@ -3,7 +3,7 @@ import DynamicImage from "./helpers/DynamicImage.astro";
 import DynamicIcon from "./helpers/DynamicIcon.astro";
 ---
 
-<div class="grid">
+<section class="grid">
   <div>
     <DynamicImage imagePath="/src/data/images/Index01Photo.jpg" altText="person i forgrund og to kollegaer der snakker i baggrund" class="img" />
     <div>
@@ -16,7 +16,7 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <style>
   .grid {
@@ -30,9 +30,35 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 82px;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        background-image: url(../assets/images/grid.svg);
+        width: 327.802px;
+        height: 327.803px;
+        top: -18.5%;
+        left: -8.3%;
+        z-index: -1;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        background-color: #4eaf4e;
+        width: 164px;
+        height: 183px;
+        transform: rotate(-90deg);
+        border-radius: 20px;
+        top: -10%;
+        left: -2.5%;
+        z-index: -1;
+      }
 
       .img {
         border-radius: 28px;
+        position: relative;
       }
 
       > div > p {
@@ -68,11 +94,34 @@ import DynamicIcon from "./helpers/DynamicIcon.astro";
   @container section (width < 720px) {
     .grid > div {
       grid-template-columns: 1fr;
-      gap: 4svw;
+      gap: 5svw;
+      margin-bottom: 20px;
+
+      &::after {
+        top: 235px;
+        left: -2px;
+        display: none;
+      }
+
+      &::before {
+        top: 235px;
+        left: -20px;
+        display: none;
+      }
 
       .img {
         order: 1;
       }
+    }
+  }
+
+  @container section (width < 602px) {
+    .grid > div::before {
+      display: block;
+    }
+
+    .grid > div::after {
+      display: block;
     }
   }
 </style>

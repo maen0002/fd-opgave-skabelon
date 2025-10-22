@@ -11,7 +11,14 @@ import Popover from "./Popover.astro";
       <li>Team</li>
       <li>About</li>
     </ul>
-    <button popovertarget="popup">Login</button>
+    <div>
+      <div class="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <button popovertarget="popup">Login</button>
+    </div>
   </div>
 </div>
 <Popover />
@@ -29,6 +36,30 @@ import Popover from "./Popover.astro";
       justify-content: space-between;
       align-items: center;
       flex-shrink: 0;
+      container: header / inline-size;
+
+      @container header (width < 700px) {
+        ul {
+          display: none;
+        }
+
+        .burger {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          > * {
+            width: 30px;
+            height: 4px;
+            border-radius: 20px;
+            background-color: #fff;
+          }
+        }
+        > div:has(.burger) {
+          display: flex;
+          gap: 10px;
+          place-items: center;
+        }
+      }
 
       h2 {
         color: #fff;

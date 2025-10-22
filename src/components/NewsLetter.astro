@@ -1,0 +1,60 @@
+---
+import Button from "./Button.astro";
+---
+
+<section>
+  <div>
+    <div>
+      <h3>Subscribe Our Newsletter</h3>
+      <p>Build stronger Customer Relationships with Consultalk</p>
+    </div>
+    <div><input type="text" placeholder="your mail address" /><Button link="#" btnColor="var(--primary-color-01)" txtColor="var(--bg-color-black)" txt="Subscribe" brdRadius="42px" padding="15px 45px" /></div>
+  </div>
+</section>
+
+<style>
+  section {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1200px) 1fr;
+    background-color: #fff;
+    padding: 5svw;
+    color: #fff;
+
+    > * {
+      grid-column: 2;
+    }
+  }
+
+  section > div {
+    background-color: var(--bg-color-black);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5svw;
+    container: newsbox / inline-size;
+
+    input {
+      background-color: #fff;
+      border: 1px solid #e3e3e3;
+      border-radius: 4px;
+      padding: 15px 33px;
+    }
+
+    > div:has(input) {
+      display: flex;
+      gap: 21px;
+    }
+  }
+
+  @container newsbox (width < 600px) {
+    section > div > div:has(input) {
+      flex-direction: column;
+
+      > a {
+        width: min-content;
+        align-self: center;
+      }
+    }
+  }
+</style>

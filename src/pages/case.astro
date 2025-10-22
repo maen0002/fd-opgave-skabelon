@@ -2,10 +2,11 @@
 import Layout from "@layouts/Layout.astro";
 import CaseStudyArticle from "@components/CaseStudyArticle.astro";
 import HeroBgWrapper from "@components/helpers/HeroBgWrapper.astro";
+import NewsLetter from "@components/NewsLetter.astro";
 ---
 
 <Layout>
-  <HeroBgWrapper imagePath="test.png">
+  <HeroBgWrapper imagePath="casehero.jpg" class="hero">
     <header>
       <p>Case Studies</p>
       <h1>Taxes & Efficiency</h1>
@@ -13,4 +14,50 @@ import HeroBgWrapper from "@components/helpers/HeroBgWrapper.astro";
   </HeroBgWrapper>
 
   <CaseStudyArticle />
+  <NewsLetter />
 </Layout>
+
+<style>
+  body {
+    > .hero {
+      height: 433px;
+      background-size: contain;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: grid;
+      grid-template-columns: 1fr minmax(0, 1200px) 1fr;
+
+      > header {
+        display: inline-flex;
+        padding: 48px 60px;
+        flex-direction: column;
+        align-self: center;
+        gap: 10px;
+        border-radius: 29px;
+        background: rgba(255, 255, 255, 0.85);
+        grid-column: 2;
+        height: min-content;
+        width: fit-content;
+        backdrop-filter: blur(5.5px);
+        margin: 0px 20px;
+      }
+    }
+  }
+  h1 {
+    color: #181818;
+    font-family: Cabin;
+    font-size: var(--size-4);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 116%; /* 58px */
+  }
+  p {
+    border-radius: 20px;
+    background: #ffcc4a;
+    padding: 0 15px;
+    letter-spacing: 2.32px;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+</style>
