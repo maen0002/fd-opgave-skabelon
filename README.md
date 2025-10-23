@@ -1,82 +1,33 @@
-# Opgaveskabelon til Frontend Design tema på Frontend-valgfaget
+# Reflektion
 
-Se opgavebeskrivelsen på Fronter.
+### Afstand
 
-## Medfølgende Data
+Jeg har igennem projektet fået vildet mig ud i lidt for rodet måder at skabe spacing mellem elementer. Jeg skulle istedet have lavet nogle konkrete regler dog gjorde jeg ikke det til at starte med da jeg i Figma syntes at afstandende varierede meget selvom det var mellem de samme elementer. Kunne blandt andet havde gjordt brug af flow.
 
-Der medfølger indholdsdata i form af lokale JSON-filer, som du kan bruge til din opgave. Det er ikke et krav til opgaven, men det kan gøre det nemmere og hurtigere at få tekst og billeder ind i dit projekt.
+### Layout
 
-Bemærk, at CaseStudy-siden allerede inkluderer data fra en lokal JSON-fil.
+Jeg har valgt at bruge grid column minmax() til at skabe mit layout og give specifikke elementer lov til at "breakout". Dog syntes jeg igen her jeg gjorde det for rodet for mig selv da jeg bare kunne have lavet sådan et layout i layout filen istedet for i en section wrapper på hvert astro element.
 
-Dokumentationen til anvendelsen af dataene finder du på: [https://frontend-design-theme.netlify.app/](https://frontend-design-theme.netlify.app/).
+### Grid, flex og subgrid
 
-Her er et eksempel på, hvordan du kan bruge dataene i dine Astro-komponenter:
+Jeg har benyttet alle tre og syntes ikke det gav mig nogle problemer i andet end Hero'en på forsiden. Her har jeg bl.a. også et problem med mit p elements text i li elementerne stopper for tidligt og kunne ikke finde en løsning på det.
 
-```astro
-import employees from "@data/employees.json";
+### Brug af selectors og pseudo elementer
 
-console.log(employees);
-```
+Jeg har brugt selectors så vidt muligt frem for class og syntes det er gået udemærket. Dog har jeg fundet ud af at det kan blive lidt kaotisk når man nester for meget eller har for mange af samme slags element til samme stylesheet. Derudover har jeg benyttet ::before og ::after for at skabe de figurer i baggrunden som skulle bruges nogle steder.
 
-## Brug af hjælpekomponenter
+### Brug af container queueries
 
-### DynamicImage.astro
+Jeg syntes godt min brug af container queueris kunne være bedre især fordi jeg for det meste bare har fået lavet min section som alligevel fylder 100% af width til en container også er det jo ikke meget anderledes end en normal media query. Havde jeg haft mere tid havde jeg lavet nogle wrappers til der hvor container queieries kunne havde givet mening fremfor hele skærmens width.
 
-Brug denne komponent til at vise billeder dynamisk fra lokale datafiler. Du skal blot sende stien fra datasættet direkte til komponenten.
+### Brug af custom properties og variabler
 
-Eksempel med data:
+Jeg syntes brugen af custom properties og variabler giver meget god mening selvom de selvfølgelig overhovedet ikke er det samme.
 
-```astro
-{employees.map((employee) => (
-  <DynamicImage
-    imagePath={employee.img}
-    altText={employee.name}
-    width={200}
-    height={200}
-  />
-))}
-```
+### @layer
 
-### DynamicIcon.astro
+Fik desværre ikke gjordt brug af viden om cascade layers da jeg kom i tanke om det for langt inde i processen. Kan dog se hvordan det havde gjordt det næmmere at style visse elementer.
 
-`DynamicIcon` bruges til at vise SVG-ikoner dynamisk baseret på et navn fra dine data.
+## Afrunding
 
-Eksempel med data:
-
-```astro
-{employee.social_links.map((link) => (
-  <DynamicIcon name={link.icon} />
-))}
-```
-
-Her vises et ikon for hvert socialt medie, hvor `icon`-feltet matcher filnavnet på SVG-ikonet i `src/icons/`.
-
-### HeroBgWrapper.astro
-
-HeroBgWrapper bruges til Hero-sektioner på diverse undersider. Brug `imagePath` til at angive baggrundsbilledet. Du skal selv hente billederne fra Figma og lægge dem i mappen `src/assets/images`. Henvis derefter kun til filnavnet (f.eks. 'case.webp').
-
-Alt markup du placerer mellem <HeroBgWrapper> og </HeroBgWrapper> bliver vist ovenpå baggrunden.
-
-Eksempel:
-
-```astro
-<HeroBgWrapper imagePath="case.webp" class="hero-bg">
-  <h1>Din overskrift</h1>
-</HeroBgWrapper>
-```
-
-Du kan tilføje ekstra styling via `class` eller `style`-props, og alt indhold mellem tags bliver vist ovenpå baggrunden.
-
----
-
-## Import af SVG-ikoner direkte
-
-Du kan også importere SVG-ikoner direkte i dine komponenter, hvis du ønsker mere kontrol eller styling:
-
-```astro
-import Checkmark from "@icons/checkmark.svg";
-
-<Checkmark width={32} height={32} class="my-icon" />
-```
-
-Se evt. `src/pages/svgs.astro` for flere eksempler på direkte import og brug af SVG-ikoner.
+Alt i alt syntes jeg min færdige udgave matcher figma designet rimeligt godt dog syntes jeg bestemt der er ting jeg kunne have gjordt bedre/smartere
