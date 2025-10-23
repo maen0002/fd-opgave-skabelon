@@ -1,0 +1,138 @@
+---
+import Layout from "@layouts/Layout.astro";
+import DynamicImage from "@components/helpers/DynamicImage.astro";
+import employees from "@data/employees.json";
+import NewsLetter from "@components/NewsLetter.astro";
+import DynamicIcon from "@components/helpers/DynamicIcon.astro";
+
+export async function getStaticPaths() {
+  return employees.map((e) => ({ params: { slug: e.slug } }));
+}
+
+const { slug } = Astro.params;
+const employee = employees.find((e) => e.slug === slug);
+
+if (!employee) {
+  // return a 404 by throwing (or render a fallback)
+  throw new Error(`Employee not found: ${slug}`);
+}
+---
+
+<Layout title={employee.name}>
+  <section class="team-member">
+    <section>
+      <DynamicImage imagePath={employee.img} altText={employee.name} class="employee-img" />
+      <div>
+        <div>
+          <h1>{employee.name}</h1>
+          <div>
+            <DynamicIcon name={employee.social_links[0].icon} />
+            <DynamicIcon name={employee.social_links[1].icon} />
+            <DynamicIcon name={employee.social_links[2].icon} />
+          </div>
+        </div>
+        <h4 class="title">{employee.title}</h4>
+        <p>{employee.description_long}</p>
+        <div class="line"></div>
+        <h2>Past experience</h2>
+        <p>{employee.past_experience}</p>
+      </div>
+    </section>
+  </section>
+  <NewsLetter />
+</Layout>
+
+<style>
+  .team-member {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1200px) 1fr;
+    margin: 0px 20px;
+    margin-top: 9.2svw;
+    container: section / inline-size;
+
+    > * {
+      grid-column: 2;
+    }
+
+    > section {
+      display: grid;
+      grid-template-columns: min-content 1fr;
+      gap: 3.6svw;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        background-image: url(../../assets/images/grid.svg);
+        width: 327.802px;
+        height: 327.803px;
+        top: -18.5%;
+        left: -8.3%;
+        z-index: -1;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        background-color: #4eaf4e;
+        width: 164px;
+        height: 183px;
+        transform: rotate(-90deg);
+        border-radius: 20px;
+        top: -10%;
+        left: -2.5%;
+        z-index: -1;
+      }
+
+      > .employee-img {
+        border-radius: 20px;
+        max-width: 478px;
+        max-height: 504px;
+      }
+
+      > div > div:has(svg) {
+        display: flex;
+        gap: 120px;
+
+        > div {
+          display: flex;
+          gap: 25px;
+          place-content: center end;
+        }
+      }
+    }
+  }
+  h4 {
+    color: var(--text-color-gray);
+    font-family: Cabin;
+
+    + p {
+      margin-top: var(--space-m);
+    }
+  }
+  .line {
+    width: 100%;
+    background-color: #c1c1c1;
+    height: 1px;
+    margin: var(--space-l) 0px;
+
+    + h2 {
+      margin-bottom: var(--space-2xs);
+    }
+  }
+
+  @container section (width < 900px) {
+    .team-member > section {
+      grid-template-columns: 1fr;
+
+      &::before {
+        top: 10%;
+        left: 50%;
+      }
+      &::after {
+        top: 20%;
+        left: 50%;
+      }
+    }
+  }
+</style>

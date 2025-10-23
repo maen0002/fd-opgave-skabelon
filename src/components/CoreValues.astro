@@ -1,5 +1,5 @@
 ---
-const { cardContent } = Astro.props;
+const { cardContent, cardColor, bgColor = "var(--bg-color-black)", btnColor, btnTxtColor = "var(--bg-color-black)", txtColor } = Astro.props;
 
 const cards = Array.isArray(cardContent) ? cardContent : cardContent && Array.isArray(cardContent.values) ? cardContent.values : defaultValues;
 
@@ -8,21 +8,21 @@ import Button from "./Button.astro";
 import { values as defaultValues } from "../data/coreValues.json";
 ---
 
-<section>
+<section style=`background: ${bgColor}`>
   <div>
-    <div>
+    <div style=`color: ${txtColor}`>
       <h4>Growing with our Clients</h4>
       <h2>Our core values & principles</h2>
       <p>Capitalize on low hanging fruit to identify a ballpark value added activity beta test. <br /> Override the digital divide with additional from DevOps.</p>
     </div>
     <div>
-      <Button link="#" btnColor="#fff" txtColor="var(--bg-color-black)" txt="Get in touch" />
+      <Button link="#" btnColor=`${btnColor}` txtColor=`${btnTxtColor}` txt="Get in touch" />
     </div>
   </div>
   <ul>
     {
       cards.map((card) => (
-        <li>
+        <li style={`background: ${cardColor}`}>
           <div>
             <circle cx="26.8889" cy="26.3889" r="26.3889" fill="#181818" />
             <DynamicIcon name={card.icon} />
@@ -58,8 +58,7 @@ import { values as defaultValues } from "../data/coreValues.json";
   section {
     display: grid;
     grid-template-columns: 1fr minmax(0, var(--content-width)) 1fr;
-    background: var(--bg-color-black);
-    padding: 10svw 5svw;
+    padding: 7svw 5svw;
 
     > * {
       grid-column: 2;
@@ -127,6 +126,7 @@ import { values as defaultValues } from "../data/coreValues.json";
         font-size: var(--size-2);
         font-style: normal;
         font-weight: 600;
+        margin-bottom: var(--space-2xs);
       }
 
       p {
@@ -141,6 +141,7 @@ import { values as defaultValues } from "../data/coreValues.json";
         display: grid;
         grid-template-columns: min-content;
         grid-template-rows: min-content;
+        margin-bottom: var(--space-m);
 
         > * {
           grid-column: 1;

@@ -1,0 +1,70 @@
+---
+import Layout from "@layouts/Layout.astro";
+import HeroBgWrapper from "@components/helpers/HeroBgWrapper.astro";
+import AboutOurVision from "@components/AboutOurVision.astro";
+import NewsLetter from "@components/NewsLetter.astro";
+import CoreValues from "@components/CoreValues.astro";
+import TeamOverview from "@components/TeamOverview.astro";
+import AboutAccordion from "@components/AboutAccordion.astro";
+import faqData from "@data/faq.json";
+---
+
+<Layout title="about">
+  <HeroBgWrapper imagePath="abouthero.jpg" class="about-hero">
+    <header>
+      <p>About</p>
+      <h1>Creative Services For Boost <br /> Your Business Growth</h1>
+    </header>
+  </HeroBgWrapper>
+  <AboutOurVision />
+  <CoreValues cardColor="#FFF;" bgColor="#F5F5F5;" btnColor="var(--bg-color-black)" btnTxtColor="#fff" txtColor="var(--bg-color-black)" />
+  <TeamOverview num="3" btn={false}>
+    <h4>Our Team</h4>
+    <h2>We champion the bold to achieve the extraordinary</h2>
+    <p>Our success stems from the synergy between dedicated teams and our valued clients. We prioritize a company culture that fosters exceptional productivity, ensures customer satisfaction, and promotes mutual respect among all team members.</p>
+  </TeamOverview>
+  <AboutAccordion data={faqData} exclusive={true} />
+  <NewsLetter />
+</Layout>
+
+<style>
+  :global(.about-hero) {
+    min-height: 620px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1200px) 1fr;
+
+    > header {
+      display: inline-flex;
+      padding: 2svw 3svw;
+      flex-direction: column;
+      align-self: center;
+      gap: 10px;
+      border-radius: 29px;
+      background: rgba(255, 255, 255, 0.85);
+      grid-column: 2;
+      height: min-content;
+      width: fit-content;
+      backdrop-filter: blur(5.5px);
+      margin: 0px 20px;
+    }
+  }
+
+  header > h1 {
+    color: #181818;
+    font-family: Cabin;
+    font-size: var(--size-4);
+    font-style: normal;
+    font-weight: 700;
+  }
+  header > p {
+    border-radius: 20px;
+    background: #ffcc4a;
+    padding: 0 15px;
+    letter-spacing: 2.32px;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+</style>

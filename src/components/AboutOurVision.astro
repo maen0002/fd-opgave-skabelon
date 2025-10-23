@@ -1,0 +1,150 @@
+---
+import DynamicIcon from "./helpers/DynamicIcon.astro";
+import Image from "astro/components/Image.astro";
+import myImage from "../assets/images/ourvision01.jpg";
+---
+
+<section class="grid">
+  <h4>OUR VISION</h4>
+  <div>
+    <div>
+      <h2>Turn your ideas into reality.</h2>
+      <p>Capitalize on low hanging fruit to identify a ballpark value added activity beta test. Override the digital divide with additional from DevOps.</p>
+      <div>
+        <div><DynamicIcon name="checkmark" /> <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day.</p></div>
+        <div><DynamicIcon name="checkmark" /> <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test override the digital.</p></div>
+      </div>
+    </div>
+    <Image src={myImage} alt="Flere personer der arbejder sammen" class="ourvision_img" />
+  </div>
+  <div class="flex">
+    <div><h2>1128+</h2><p>Successful Work</p></div>
+    <div><h2>908+</h2><p>Team member</p></div>
+    <div><h2>258+</h2><p>Happy Customers</p></div>
+    <div><h2>564+</h2><p>Creative Idea</p></div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1200px) 1fr;
+    margin: var(--space-2xl) 0px var(--space-3xl) 0px;
+    padding: 0px 20px;
+    padding-bottom: var(--space-xl);
+    container: section / inline-size;
+
+    > h4 {
+      grid-column: 2;
+      margin-bottom: var(--space-m);
+    }
+
+    > .flex {
+      display: flex;
+      grid-column: 2;
+      justify-content: space-around;
+    }
+
+    > div:has(svg) {
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9svw;
+      position: relative;
+      margin-bottom: var(--space-xl);
+
+      &::before {
+        content: "";
+        position: absolute;
+        background-image: url(../assets/images/grid.svg);
+        width: 327.802px;
+        height: 327.803px;
+        top: -18.5%;
+        right: -8.3%;
+        z-index: -1;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        background-color: #4eaf4e;
+        width: 164px;
+        height: 183px;
+        transform: rotate(-90deg);
+        border-radius: 20px;
+        top: -10%;
+        right: -2.5%;
+        z-index: -1;
+      }
+
+      > .ourvision_img {
+        position: relative;
+        border-radius: 20px;
+      }
+
+      > div > p {
+        padding-bottom: 21px;
+      }
+
+      > div > div > div {
+        display: flex;
+        gap: 10px;
+        padding-bottom: 18px;
+
+        p {
+          text-box-trim: trim-start;
+        }
+
+        svg {
+          color: #4eaf4e;
+          place-self: start;
+        }
+      }
+    }
+  }
+  h2 {
+    font-size: var(--size-4);
+    font-family: Cabin;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+    text-wrap: nowrap;
+  }
+  p {
+    font-style: normal;
+  }
+
+  @container section (width < 720px) {
+    .grid > div {
+      grid-template-columns: 1fr;
+      gap: 5svw;
+      margin-bottom: 20px;
+
+      &::after {
+        top: 235px;
+        left: -2px;
+        display: none;
+      }
+
+      &::before {
+        top: 235px;
+        left: -20px;
+        display: none;
+      }
+
+      .img {
+        order: 1;
+      }
+    }
+  }
+
+  @container section (width < 602px) {
+    .grid > div::before {
+      display: block;
+    }
+
+    .grid > div::after {
+      display: block;
+    }
+  }
+</style>

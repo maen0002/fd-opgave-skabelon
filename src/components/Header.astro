@@ -4,15 +4,17 @@ import Popover from "./Popover.astro";
 
 <div class="header">
   <div>
-    <h2>AskExperts</h2>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/case/">Case Study</a></li>
-      <li>Team</li>
-      <li>About</li>
-    </ul>
+    <a href="/"><h2>AskExperts</h2></a>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/case/">Case Study</a></li>
+        <li><a href="/team/">Team</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </nav>
     <div>
-      <div class="burger">
+      <div id="burger">
         <div></div>
         <div></div>
         <div></div>
@@ -21,6 +23,14 @@ import Popover from "./Popover.astro";
     </div>
   </div>
 </div>
+<nav id="mobile-menu" class="mobile-menu" aria-hidden="true">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/case/">Case Study</a></li>
+    <li><a href="/team/">Team</a></li>
+    <li><a href="/about/">About</a></li>
+  </ul>
+</nav>
 <Popover />
 
 <style>
@@ -39,11 +49,15 @@ import Popover from "./Popover.astro";
       container: header / inline-size;
 
       @container header (width < 700px) {
-        ul {
+        nav {
           display: none;
         }
 
-        .burger {
+        #mobile-menu[aria-hidden="false"] {
+          display: block;
+        }
+
+        #burger {
           display: flex;
           flex-direction: column;
           gap: 4px;
@@ -54,7 +68,7 @@ import Popover from "./Popover.astro";
             background-color: #fff;
           }
         }
-        > div:has(.burger) {
+        > div:has(#burger) {
           display: flex;
           gap: 10px;
           place-items: center;
@@ -94,4 +108,48 @@ import Popover from "./Popover.astro";
     text-decoration: none;
     color: #fff;
   }
+
+  #mobile-menu {
+    display: none;
+    position: fixed;
+    top: 82px;
+    left: 0;
+    right: 0;
+    background: var(--bg-color-black);
+    padding: 24px;
+    z-index: 60;
+  }
+  #mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 16px;
+  }
+  #mobile-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+  }
 </style>
+
+<script type="module">
+  const burger = document.getElementById("burger");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  if (burger && mobileMenu) {
+    burger.addEventListener("click", () => {
+      const open = burger.classList.toggle("open");
+      mobileMenu.style.display = open ? "block" : "none";
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && burger.classList.contains("open")) {
+        burger.classList.remove("open");
+        burger.setAttribute("aria-expanded", "false");
+        mobileMenu.setAttribute("aria-hidden", "true");
+        mobileMenu.style.display = "none";
+      }
+    });
+  }
+</script>

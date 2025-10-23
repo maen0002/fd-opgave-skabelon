@@ -1,25 +1,27 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import CaseStudyArticle from "@components/CaseStudyArticle.astro";
 import HeroBgWrapper from "@components/helpers/HeroBgWrapper.astro";
 import NewsLetter from "@components/NewsLetter.astro";
+import TeamOverview from "@components/TeamOverview.astro";
 ---
 
-<Layout title="case">
-  <HeroBgWrapper imagePath="casehero.jpg" class="case-hero">
+<Layout title="team">
+  <HeroBgWrapper imagePath="teamhero.jpg" class="team-hero">
     <header>
-      <p>Case Studies</p>
-      <h1>Taxes & Efficiency</h1>
+      <p>Team</p>
+      <h1>Consultors</h1>
     </header>
   </HeroBgWrapper>
-
-  <CaseStudyArticle />
+  <TeamOverview>
+    <h2>Meet Our Great Team</h2>
+    <p>Welcome to our amazing team! We are a group of passionate individuals dedicated to excellence and innovation. Each member brings unique skills and experiences, working together to achieve our goals. Join us as we embark on exciting projects and create lasting impacts.</p>
+  </TeamOverview>
   <NewsLetter />
 </Layout>
 
 <style>
-  :global(.case-hero) {
-    height: 433px;
+  :global(.team-hero) {
+    min-height: 433px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -28,7 +30,7 @@ import NewsLetter from "@components/NewsLetter.astro";
 
     > header {
       display: inline-flex;
-      padding: 48px 60px;
+      padding: 2svw 3svw;
       flex-direction: column;
       align-self: center;
       gap: 10px;
@@ -42,15 +44,14 @@ import NewsLetter from "@components/NewsLetter.astro";
     }
   }
 
-  h1 {
+  header > h1 {
     color: #181818;
     font-family: Cabin;
     font-size: var(--size-4);
     font-style: normal;
     font-weight: 700;
-    line-height: 116%; /* 58px */
   }
-  p {
+  header > p {
     border-radius: 20px;
     background: #ffcc4a;
     padding: 0 15px;

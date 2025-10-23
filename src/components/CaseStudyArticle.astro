@@ -69,6 +69,7 @@ const { caseName, category, date, image, buttonLabel } = caseStudy.caseDetails;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
+    container: header / inline-size;
 
     > * {
       grid-column: 1;
@@ -83,10 +84,11 @@ const { caseName, category, date, image, buttonLabel } = caseStudy.caseDetails;
     display: flex;
     background-color: var(--bg-color-black);
     color: #fff;
-    padding: 53px 60px;
+    padding: 2.76svw 3.12svw;
     place-self: center;
     border-radius: 30px;
     gap: 9.86svw;
+    margin-bottom: var(--space-l);
 
     > a {
       place-self: center;
@@ -110,6 +112,13 @@ const { caseName, category, date, image, buttonLabel } = caseStudy.caseDetails;
           grid-row: 2;
         }
       }
+    }
+  }
+
+  @container header (width < 700px) {
+    .case-details {
+      flex-direction: column;
+      gap: 20px;
     }
   }
 

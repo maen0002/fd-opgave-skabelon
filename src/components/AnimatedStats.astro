@@ -98,8 +98,8 @@
 
   .animate_stat {
     animation:
-      animate2 5s ease-out 1,
-      animate3 5s ease-out 1;
+      animate2 3s ease-out 1,
+      animate3 3s ease-out 1;
     animation-fill-mode: forwards;
   }
 
@@ -191,7 +191,7 @@
       if (entry.isIntersecting) {
         entry.target.classList.add("animate_stat");
         obs.unobserve(entry.target);
-        document.documentElement.style.setProperty("--animation-before", "animate 5s ease-out 1");
+        document.documentElement.style.setProperty("--animation-before", "animate 3s ease-out 1");
       }
     });
   });

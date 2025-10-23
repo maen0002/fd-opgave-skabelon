@@ -5,7 +5,7 @@ import Button from "./Button.astro";
 console.log(servicesData);
 ---
 
-<ul>
+<ul class="services">
   {
     servicesData.services.map((service) => (
       <li>
@@ -20,9 +20,6 @@ console.log(servicesData);
 <style>
   ul {
     padding-inline-start: 0px;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
   }
   @layer components {
     li {
@@ -33,12 +30,21 @@ console.log(servicesData);
       background: rgba(38, 38, 38, 0.9);
       backdrop-filter: blur(16px);
       color: #fff;
+      display: grid;
+      grid-row: 1 / -1;
+      grid-template-rows: subgrid;
+      place-self: center;
+
+      > a {
+        width: min-content;
+      }
 
       h2 {
         font-family: Cabin;
         font-size: var(--size-2);
         font-style: normal;
         font-weight: 600;
+        text-wrap: nowrap;
       }
     }
   }

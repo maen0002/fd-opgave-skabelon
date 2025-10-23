@@ -1,0 +1,44 @@
+---
+import AccordionItem from "../components/AccordionItem.astro";
+import faqData from "@data/faq.json";
+
+const { exclusive } = Astro.props;
+---
+
+<section class="accordion-container">
+  <div>
+    <h4>FAQ</h4>
+    <h2>Customer Questions</h2>
+    <div>
+      {faqData.faq.map((props) => <AccordionItem {...props} {exclusive} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  h4 {
+    text-align: center;
+    margin-bottom: var(--space-m);
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: var(--space-m);
+  }
+  section {
+    padding-block: 3rem;
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1200px) 1fr;
+    margin-top: var(--space-xl);
+  }
+  section > div {
+    background: #f5f5f5;
+    grid-column: 2;
+    padding: 7svw 20px;
+    border-radius: 30px;
+    margin: 0px 20px;
+  }
+  section > div > div {
+    max-width: 725px;
+    margin-inline: auto;
+  }
+</style>

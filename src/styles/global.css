@@ -6,6 +6,7 @@
   --bg-color-yellow: #fbc336;
   --bg-section-gray: #f5f5f5;
   --primary-color-01: #ffcc4a;
+  --text-color-gray: #595566;
 
   --size--1: clamp(0.65rem, 0.63rem + 0.1002vw, 0.7502rem);
   --size-0: clamp(0.8125rem, 0.775rem + 0.1875vw, 1rem);
@@ -21,12 +22,20 @@
   --space-l: clamp(2rem, 1.913rem + 0.4348vw, 2.25rem);
   --space-xl: clamp(3rem, 2.8696rem + 0.6522vw, 3.375rem);
   --space-2xl: clamp(4rem, 3.8261rem + 0.8696vw, 4.5rem);
+  --space-3xl: clamp(5rem, 4.8261rem + 1.0696vw, 5.3rem);
 }
 
 p {
   font-family: Lato;
   font-size: var(--size-0);
   line-height: 147.5%;
+}
+h1 {
+  font-family: Cabin;
+  font-size: var(--size-4);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 116%; /* 58px */
 }
 h2 {
   font-size: var(--size-4);
@@ -39,4 +48,13 @@ h3 {
   font-size: var(--size-2);
   font-style: normal;
   font-weight: 600;
+}
+h4 {
+  font-family: Lato;
+  font-size: var(--size-1);
+  font-style: normal;
+}
+
+h2 + p {
+  margin-top: var(--space-xs);
 }
